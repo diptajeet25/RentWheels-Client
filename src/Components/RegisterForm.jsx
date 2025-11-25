@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../Context/AuthContext";
 
 const RegisterForm = () => {
+  const {createUser}=useContext(AuthContext);
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -12,6 +14,9 @@ const RegisterForm = () => {
     const password= form.password.value
      const photo= form.photo.value
      console.log(name,email,password,photo);
+     createUser(email,password)
+     .then(res=>console.log(res))
+     .catch(err=>console.log(err))
     
 
 
