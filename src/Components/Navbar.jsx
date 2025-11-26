@@ -21,7 +21,7 @@ const Navbar = () => {
   <Link to="/cars">Browse Cars</Link>
   {
     user ? <>
-    <Link to="/">My Listings</Link>
+    <Link to="/mycars">My Listings</Link>
   <Link>My Bookings</Link>
       <Link to="/addcar">Add Car</Link>
     </> :""
