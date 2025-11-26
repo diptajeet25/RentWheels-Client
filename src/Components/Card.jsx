@@ -4,7 +4,7 @@ const Card = ({car}) => {
     console.log(car);
   return (
     <div>
-        <div className="card bg-base-100 w-96 shadow-sm">
+        <div className="card bg-base-100 w-100 shadow-sm">
   <figure>
     <img
       src={car.image}
@@ -14,7 +14,7 @@ const Card = ({car}) => {
   <div className="card-body">
     <h2 className="card-title">
      {car.carName}
-      <div className="badge badge-secondary">NEW</div>
+      <div className="badge badge-secondary">{car.status}</div>
     </h2>
     {car.description.split(" ").slice(0, 20).join(" ")}...
 <div className="card-actions justify-between items-center mt-3 flex-wrap gap-2">

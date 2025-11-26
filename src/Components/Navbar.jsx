@@ -18,7 +18,7 @@ const Navbar = () => {
   }
   const link=<div className='text-semibold flex flex-col lg:flex-row gap-2  lg:gap-4'>
   <Link to="/">Home</Link>
-  <Link to="/">Browse Cars</Link>
+  <Link to="/cars">Browse Cars</Link>
   {
     user ? <>
     <Link to="/">My Listings</Link>

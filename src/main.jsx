@@ -11,6 +11,7 @@ import LoginForm from './Components/LoginForm.jsx';
 import RegForm from './Components/RegisterForm.jsx'
 import AuthProvider from './Context/AuthProvider.jsx';
 import PrivateRoute from './Components/PrivateRoute.jsx';
+import AllCars from './Pages/AllCars.jsx';
 
 
 const router = createBrowserRouter([
@@ -35,6 +36,11 @@ const router = createBrowserRouter([
         element:<RegForm></RegForm>
       }
     ]
+  },
+  {
+    path:"/cars",
+    element:<AllCars></AllCars>,
+    loader: ()=> fetch("http://localhost:3000/allcars")
   }
 ]);
 
