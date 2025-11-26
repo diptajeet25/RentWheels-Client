@@ -23,7 +23,26 @@ const AddCarForm = () => {
     status: form.status.value
   };
 
-  console.log(newCar);
+  fetch('http://localhost:3000/cars',{
+   method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify(newCar)
+
+  })
+  .then(res=>res.json())
+  .then(data=>
+    {
+      if(data.insertedId)
+      {
+        console.log(data)
+        alert("Car Added SuccessFully");
+        form.reset();
+      }
+    }
+    )
+
 };
 
   return (
