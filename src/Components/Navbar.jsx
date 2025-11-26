@@ -16,10 +16,21 @@ const Navbar = () => {
   })
     .catch(err=>console.log(err))
   }
-  const link=<>
+  const link=<div className='text-semibold flex flex-col lg:flex-row gap-2  lg:gap-4'>
   <Link to="/">Home</Link>
+  <Link to="/">Browse Cars</Link>
+  {
+    user ? <>
+    <Link to="/">My Listings</Link>
+  <Link>My Bookings</Link>
       <Link to="/addcar">Add Car</Link>
-      <Link>Item 3</Link></>
+    </> :""
+  }
+
+  
+      
+      </div>
+
   return (
     <div>
         <div className="navbar bg-white text-black  shadow-sm">

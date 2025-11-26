@@ -10,6 +10,7 @@ import Auth from './Pages/Auth.jsx';
 import LoginForm from './Components/LoginForm.jsx';
 import RegForm from './Components/RegisterForm.jsx'
 import AuthProvider from './Context/AuthProvider.jsx';
+import PrivateRoute from './Components/PrivateRoute.jsx';
 
 
 const router = createBrowserRouter([
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
   },
   {
     path:"/addcar",
-    element:<AddCar></AddCar>
+    element:<PrivateRoute><AddCar></AddCar></PrivateRoute>
   },
   {
     path:"/auth",

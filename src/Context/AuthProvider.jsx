@@ -1,9 +1,12 @@
 import React, {  useEffect, useState } from 'react';
 import { AuthContext } from './AuthContext';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import { auth } from '../Firebase/Firebase.init';
+import { GoogleAuthProvider } from "firebase/auth";
+
 
 const AuthProvider = ({children}) => {
+  const provider = new GoogleAuthProvider();
     const [user,setUser]=useState("Dipta");
 
     const createUser=(email,password)=>
@@ -16,7 +19,10 @@ const AuthProvider = ({children}) => {
     {
       return signInWithEmailAndPassword(auth,email,password)
     }
-
+    const googleSignIn =()=>
+    {
+      return signInWithPopup(auth , provider)
+    }
     const logoutUser=()=>
     {
       return signOut(auth)
@@ -36,7 +42,7 @@ const AuthProvider = ({children}) => {
 
     },[])
 
-    const authInfo={user,setUser,createUser,loginUser,logoutUser}
+    const authInfo={user,setUser,createUser,loginUser,logoutUser,googleSignIn}
   return (
    <AuthContext value={authInfo}>
     {children}

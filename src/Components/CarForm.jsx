@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../Context/AuthContext";
 
 const AddCarForm = () => {
+  const {user}=useContext(AuthContext);
+  console.log(user);
 
     const handleAddCar = (e) => {
   e.preventDefault();
@@ -99,6 +102,8 @@ const AddCarForm = () => {
             type="text" name="username"
             placeholder="Provider name"
             className="input input-bordered w-full"
+            defaultValue={user.displayName}
+            readOnly
             required
           />
         </div>
@@ -109,6 +114,8 @@ const AddCarForm = () => {
             type="email" name="useremail"
             placeholder="Provider email"
             className="input input-bordered w-full"
+            defaultValue={user.email}
+            readOnly
             required
           />
         </div>
