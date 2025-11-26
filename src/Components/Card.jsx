@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const Card = ({car}) => {
     console.log(car);
@@ -40,7 +41,8 @@ const Card = ({car}) => {
   </span>
 </div>
 
-<button className="btn btn-active btn-primary mt-2">View Details</button>
+<Link to={`/cardetails/${car.
+_id}`} className="btn btn-active btn-primary mt-2">View Details</Link>
 
 
   </div>
