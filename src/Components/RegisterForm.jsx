@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
+import { updateProfile } from "firebase/auth";
+import { auth } from "../Firebase/Firebase.init";
 
 const RegisterForm = () => {
   const {createUser,googleSignIn}=useContext(AuthContext);
@@ -15,7 +17,19 @@ const RegisterForm = () => {
      const photo= form.photo.value
      console.log(name,email,password,photo);
      createUser(email,password)
-     .then(res=>console.log(res))
+     .then(res=>
+      {
+        console.log(res.user)
+       
+        updateProfile(auth.currentUser,{
+          displayName:name,
+          photoURL:photo
+        })
+        .then(result=>console.log("Update Successfully",result))
+        .catch(error=>console.log(error))
+
+
+  })
      .catch(err=>console.log(err))
     
 
