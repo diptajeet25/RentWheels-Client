@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 import { AuthContext } from '../Context/AuthContext';
@@ -7,6 +7,15 @@ import Swal from 'sweetalert2';
 const MyCars = () => {
     const {user}=useContext(AuthContext)
     const [mycars,setMycars]=useState([]);
+    const [updatecar,setUpdatecar]=useState();
+    const carRef=useRef(null);
+
+    const handleUpdate=(car)=>
+    {
+      setUpdatecar(car)
+      carRef.current.showModal();
+      console.log(car);
+    }
     useEffect(()=>
         {
             fetch(`http://localhost:3000/mycars?email=${user.email}`)
@@ -83,9 +92,10 @@ const MyCars = () => {
         <td className=" px-4 py-2">{car.rent}</td>
         <td className=" px-4 py-2">{car.status}</td>
         <td className='px-4 py-2'>
-            <button className='badge badge-warning mr-2 mb-2'>Update</button>
+            <button onClick={()=>handleUpdate(car)} className='badge badge-warning mr-2 mb-2'>Update</button>
             <button className='badge badge-error mb-2' onClick={()=>handleDeleteCar(car._id)}>Delete</button>
         </td>
+
 
 
       </tr>
@@ -96,6 +106,140 @@ const MyCars = () => {
         <div>
           
         </div>
+      
+
+<dialog id="my_modal_5" ref={carRef} className="modal  modal-bottom sm:modal-middle">
+  <div className="modal-box bg-white">
+    <h2 className='text-center text-2xl text-black my-4 font-bold'>Update Car</h2>
+   <form className="space-y-5" >
+
+        <div>
+          <label className="font-semibold text-black">Car Name</label>
+          <input
+            type="text" name="carname"
+            placeholder="Enter car name"
+            className="input input-bordered w-full"
+            required
+            defaultValue={updatecar?.carName}
+            
+          />
+        </div>
+
+        <div>
+          <label className="font-semibold text-black">Description</label>
+          <textarea name="description"
+            placeholder="Write a short description about the car"
+            className="textarea textarea-bordered w-full h-28"
+            required
+            defaultValue={updatecar?.description}
+          ></textarea>
+        </div>
+
+        <div>
+  <label className="font-semibold text-black">Category</label>
+  <select
+    name="category"
+    className="select select-bordered w-full"
+    required
+    defaultValue={updatecar?.category || ""} 
+  readOnly
+  >
+    <option value={updatecar?.category} disabled>
+    {updatecar?.category}
+    </option>
+    
+  </select>
+</div>
+
+
+        <div>
+          <label className="font-semibold text-black">Rent Price (Per Day)</label>
+          <input
+            type="number" name="rent"
+            min="0"
+            placeholder="Enter rent price per day"
+            className="input input-bordered w-full"
+            required
+            defaultValue={updatecar?.rent}
+          />
+        </div>
+
+        <div>
+          <label className="font-semibold text-black">Location</label>
+          <input
+            type="text" name="location"
+            placeholder="Enter car location"
+            className="input input-bordered w-full"
+            required
+            defaultValue={updatecar?.location}
+          />
+        </div>
+
+        <div>
+          <label className="font-semibold text-black">Car Image URL</label>
+          <input
+            type="url" name="image"
+            placeholder="Paste image URL"
+            className="input input-bordered w-full"
+            required
+            defaultValue={updatecar?.image}
+          />
+        </div>
+
+        <div>
+          <label className="font-semibold text-black">Provider Name</label>
+          <input
+            type="text" name="username"
+            placeholder="Provider name"
+            className="input input-bordered w-full"
+            defaultValue={user?.displayName}
+            readOnly
+            required
+          />
+        </div>
+
+        <div>
+          <label className="font-semibold text-black">Provider Email</label>
+          <input
+            type="email" name="useremail"
+            placeholder="Provider email"
+            className="input input-bordered w-full"
+            defaultValue={user?.email}
+            readOnly
+            required
+          />
+        </div>
+
+        <div>
+          <label className="font-semibold text-black">Created At</label>
+          <input
+            type="date"  name="date"
+            className="input input-bordered w-full"
+            required
+            defaultValue={updatecar?.createdAt}
+          />
+        </div>
+
+        <div>
+          <label className="font-semibold text-black">Status</label>
+          <select className="select select-bordered w-full" name="status" required>
+            <option>Available</option>
+            <option>Booked</option>
+          </select>
+        </div>
+
+        <button type="submit" className="btn btn-primary w-full mt-4 text-lg">
+          Update Car
+        </button>
+        </form>
+    <div className="modal-action">
+      <form method="dialog">
+        
+        <button className="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
 
         <Footer></Footer>
 
