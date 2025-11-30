@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import logo from "../assets/logo.png"
 import { AuthContext } from '../Context/AuthContext';
 
@@ -16,14 +16,15 @@ const Navbar = () => {
   })
     .catch(err=>console.log(err))
   }
-  const link=<div className='text-semibold flex flex-col lg:flex-row gap-2  lg:gap-4'>
-  <Link to="/">Home</Link>
-  <Link to="/cars">Browse Cars</Link>
+  const link=<div className='text-semibold flex flex-col lg:flex-row gap-2 font-semibold  lg:gap-4'>
+  <NavLink to="/" className={({ isActive }) =>isActive ? "text-purple-600" : ""}>Home</NavLink>
+  <NavLink to="/cars" className={({ isActive }) =>isActive ? "text-purple-600" : "" }>Browse Cars</NavLink>
   {
     user ? <>
-    <Link to="/mycars">My Listings</Link>
-  <Link>My Bookings</Link>
-      <Link to="/addcar">Add Car</Link>
+    <NavLink to="/mycars" className={({ isActive }) =>isActive ? "text-purple-600" : "" }>My Listings</NavLink>
+    <NavLink to="/mybookings"  className={({ isActive }) =>isActive ? "text-purple-600" : ""}>My Bookings</NavLink>
+
+      <NavLink to="/addcar" className={({ isActive }) =>isActive ? "text-purple-600" : "" }>Add Car</NavLink>
     </> :""
   }
 
