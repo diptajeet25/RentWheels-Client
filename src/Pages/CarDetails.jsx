@@ -1,12 +1,40 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLoaderData } from 'react-router';
 import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 import { MapPin, Calendar, User, Mail, Car, Tag } from "lucide-react";
+import { AuthContext } from '../Context/AuthContext';
 
 const CarDetails = () => {
     const car=useLoaderData();
-    console.log(car);
+    const {user}=useContext(AuthContext);
+  
+
+    const handleBooking=(car)=>
+    {
+      console.log("after booking",car);
+      const bookingCar={
+        carId:car._id,
+        carName:car.carName,
+        rent:car.rent,
+        location:car.location,
+        category:car.category,
+        bookedby:user.email
+      }
+      console.log(bookingCar)
+      fetch("http://localhost:3000/bookingcars",
+        {
+          method:"POST",
+          headers:{
+            "content-type":"application/json"
+          },
+          body:JSON.stringify(bookingCar)
+        }
+      )
+      .then(res=>res.json())
+      .then(data=>console.log(data))
+
+    }
   return (
     <div>
         <Navbar></Navbar>
@@ -95,7 +123,7 @@ const CarDetails = () => {
       </div>
 
       <div className="mt-10">
-        <button className="btn w-full py-4 rounded-xl text-lg font-semibold bg-blue-600 text-white hover:bg-blue-700 transition">
+        <button onClick={()=>handleBooking(car)} className="btn w-full py-4 rounded-xl text-lg font-semibold bg-blue-600 text-white hover:bg-blue-700 transition">
           Book This Car
         </button>
       </div>

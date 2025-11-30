@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 const Card = ({car}) => {
-    console.log(car);
+  
   return (
     <div>
         <div className="card bg-base-100 w-100 shadow-sm">
