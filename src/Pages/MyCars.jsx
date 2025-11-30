@@ -8,6 +8,9 @@ const MyCars = () => {
     const {user}=useContext(AuthContext)
     const [mycars,setMycars]=useState([]);
     const [updatecar,setUpdatecar]=useState();
+    const [loading,setLoading]=useState(true);
+    
+    
     const carRef=useRef(null);
 
     const handleUpdate=(car)=>
@@ -25,6 +28,7 @@ const MyCars = () => {
             .then(data=>{
         
                 setMycars(data)
+                setLoading(false)
             })
         },[user])
 
@@ -127,6 +131,16 @@ const handleCarUpdate=(e)=>
         <h2 className='text-2xl lg:text-3xl font-bold text-center my-8 mb-8 text-gray-800'>My <span className='text-primary'>Cars</span></h2>
         
         <div className="overflow-x-auto w-[98%] lg:w-[70%] font-semibold text-lg  flex justify-center mx-auto">
+ {loading ? (
+           <div className="flex items-center justify-center">
+      <div className="flex flex-col items-center gap-4">
+        <span className="loading loading-ring loading-lg text-blue-600"></span>
+        <p className="text-lg font-semibold text-gray-600 animate-pulse">
+          Please wait...
+        </p>
+      </div>
+    </div>
+      ) : 
   <table className="table">
 
     <thead>
@@ -156,6 +170,7 @@ const handleCarUpdate=(e)=>
     ))}
     </tbody>
   </table>
+}
 </div>
         <div>
           
