@@ -15,13 +15,15 @@ const MyCars = () => {
       setUpdatecar(car)
       carRef.current.showModal();
       console.log(car);
+
+
     }
     useEffect(()=>
         {
             fetch(`http://localhost:3000/mycars?email=${user.email}`)
             .then(res=>res.json())
             .then(data=>{
-                console.log(data);
+        
                 setMycars(data)
             })
         },[user])
@@ -65,8 +67,59 @@ const MyCars = () => {
 
   }
 });
+
+
           
         }
+        
+const handleCarUpdate=(e)=>
+{
+  e.preventDefault()
+    const form = e.target;
+
+  const updatedCar = {
+    _id: updatecar._id,
+    carName: form.carname.value,
+    description: form.description.value,
+    category: form.category.value,
+    rent: form.rent.value,
+    location: form.location.value,
+    image: form.image.value,
+    providerName: form.username.value,
+    providerEmail: form.useremail.value,
+    createdAt: form.date.value,
+    status: form.status.value
+  };
+  console.log(updatedCar)
+
+
+  fetch("http://localhost:3000/updatecars",{
+
+    method:"PATCH",
+    headers:{
+      "Content-Type": "application/json"
+    },
+    body:JSON.stringify(updatedCar)
+  })
+  .then(res=>res.json())
+  .then(data=>
+    {console.log(data)
+ carRef.current.close();
+ 
+ Swal.fire({
+  position: "center",
+  icon: "success",
+  title: "Car Info Updated Successfully",
+  showConfirmButton: false,
+  timer: 1500
+});
+
+ const updatedCarsList = mycars.map(car =>
+          car._id === updatecar._id ? { ...car, ...updatedCar } : car
+        );
+        setMycars(updatedCarsList);
+})
+}
   return (
     <div>
         <Navbar></Navbar>
@@ -92,8 +145,8 @@ const MyCars = () => {
         <td className=" px-4 py-2">{car.rent}</td>
         <td className=" px-4 py-2">{car.status}</td>
         <td className='px-4 py-2'>
-            <button onClick={()=>handleUpdate(car)} className='badge badge-warning mr-2 mb-2'>Update</button>
-            <button className='badge badge-error mb-2' onClick={()=>handleDeleteCar(car._id)}>Delete</button>
+            <button onClick={()=>handleUpdate(car)} className='badge badge-warning mr-2 mb-2 btn'>Update</button>
+            <button className='badge badge-error mb-2 btn' onClick={()=>handleDeleteCar(car._id)}>Delete</button>
         </td>
 
 
@@ -111,7 +164,7 @@ const MyCars = () => {
 <dialog id="my_modal_5" ref={carRef} className="modal  modal-bottom sm:modal-middle">
   <div className="modal-box bg-white">
     <h2 className='text-center text-2xl text-black my-4 font-bold'>Update Car</h2>
-   <form className="space-y-5" >
+   <form className="space-y-5"  onSubmit={handleCarUpdate}>
 
         <div>
           <label className="font-semibold text-black">Car Name</label>
@@ -235,7 +288,7 @@ const MyCars = () => {
     <div className="modal-action">
       <form method="dialog">
         
-        <button className="btn">Close</button>
+        <button className="btn btn-neutral">Close</button>
       </form>
     </div>
   </div>
