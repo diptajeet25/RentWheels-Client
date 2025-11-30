@@ -2,9 +2,12 @@ import React, { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { updateProfile } from "firebase/auth";
 import { auth } from "../Firebase/Firebase.init";
+import { toast } from "react-toastify";
+import { useState } from "react";
 
 const RegisterForm = () => {
   const {createUser,googleSignIn}=useContext(AuthContext);
+  const [error,setError]=useState("")
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -15,11 +18,21 @@ const RegisterForm = () => {
    const email = form.email.value
     const password= form.password.value
      const photo= form.photo.value
-     console.log(name,email,password,photo);
+     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+if(!passwordRegex.test(password))
+{
+setError("Password must contain one uppercase,one lowercase & length should be at least 6")
+return;
+}
+else
+{
+  setError("");
+}
+    
      createUser(email,password)
-     .then(res=>
+     .then(()=>
       {
-        console.log(res.user)
+        
        
         updateProfile(auth.currentUser,{
           displayName:name,
@@ -28,9 +41,13 @@ const RegisterForm = () => {
         .then(result=>console.log("Update Successfully",result))
         .catch(error=>console.log(error))
 
+        toast.success("Sign Up Successfully")
+
 
   })
-     .catch(err=>console.log(err))
+     .catch(err=>{
+      toast.error(`${err.message}`)
+     })
     
 
 
@@ -39,13 +56,13 @@ const RegisterForm = () => {
     const googleLogIn=()=>
   {
     googleSignIn()
-    .then(res=>
+    .then(()=>
     {
-      console.log(res)
-      alert("Sign In With Google Successfull")
+      
+      toast.success("Sign In With Google Successfully")
     }
     )
-    .catch(err=>console.log(err))
+    .catch(err=>toast.error(`${err.message}`))
   }
 
   return (
@@ -96,7 +113,9 @@ const RegisterForm = () => {
             className="input input-bordered w-full"
           />
         </div>
-
+{
+  error ? <span className="text-red-600 text-md">{error}</span> :""
+}
         <button type="submit" className="btn btn-primary w-full text-lg mt-4">
           Register
         </button>

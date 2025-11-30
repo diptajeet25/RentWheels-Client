@@ -2,19 +2,24 @@ import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router';
 import logo from "../assets/logo.png"
 import { AuthContext } from '../Context/AuthContext';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const Navbar = () => {
   const {user,logoutUser}=useContext(AuthContext);
+
   const handleLogOut=()=>
   {
     logoutUser()
-    .then(res=>
+    .then(()=>
       {
-        console.log(res)
-        alert("Logged Out SuccessFully")
+       
+        toast.success("Logged Out Successfully")
+       
   })
-    .catch(err=>console.log(err))
+    .catch((err)=>toast.error(`${err.message}`))
   }
   const link=<div className='text-semibold flex flex-col lg:flex-row gap-2 font-semibold  lg:gap-4'>
   <NavLink to="/" className={({ isActive }) =>isActive ? "text-purple-600" : ""}>Home</NavLink>
@@ -55,11 +60,42 @@ const Navbar = () => {
   </div>
   <div className="navbar-end">
     {
-      user ? <button onClick={handleLogOut} className='btn btn-primary'>Sign Out</button> : <Link  to="/auth/reg" className="btn btn-primary">Register</Link>
+      user ? <div className="dropdown dropdown-end">
+  <div tabIndex={0} role="button" className="btn btn-ghost rounded-full">
+    <img
+      src={user.photoURL} 
+      alt="User Avatar" 
+      className="w-10 h-10 rounded-full object-cover"
+    />
+  </div>
+  <ul
+    tabIndex="-1"
+    className="menu menu-sm dropdown-content bg-white rounded-box z-50 mt-3 w-52 p-2 shadow-lg"
+  >
+    <li className='mb-2 text-md hover:bg-gray-300 p-2 rounded-2xl cursor-pointer'>{user.displayName}</li>
+    <li className='mb-2 text-md hover:bg-gray-300 p-2 rounded-2xl cursor-pointer'>{user.email}</li>
+    <li onClick={handleLogOut} className='mb-2 text-md hover:bg-gray-300 p-2 rounded-2xl cursor-pointer' >Sign Out</li>
+  </ul>
+</div>
+ : <Link  to="/auth/reg" className="btn btn-primary">Register</Link>
     }
    
   </div>
 </div>
+<ToastContainer
+  position="top-right"
+  autoClose={2000}
+  hideProgressBar={false}
+  newestOnTop={false}
+  closeOnClick
+  rtl={false}
+  pauseOnFocusLoss
+  draggable
+  pauseOnHover
+  theme="colored"
+  style={{ zIndex: 9999 }}
+/>
+
     </div>
   );
 };

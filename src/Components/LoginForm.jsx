@@ -1,10 +1,11 @@
 import React, {  useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
+import { toast } from "react-toastify";
 
 const LoginForm = () => {
 
-    const { user,loginUser,googleSignIn}=useContext(AuthContext)
-    console.log(user);
+    const { loginUser,googleSignIn}=useContext(AuthContext)
+
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -15,21 +16,25 @@ const LoginForm = () => {
      const password= form.password.value
    
 
-    console.log(email,password);
     loginUser(email,password)
-    .then(res=>console.log(res))
-    .catch(err=>console.log(err))
+    .then(()=>{
+      toast.success("Sign In Successfully")
+    })
+    .catch(err=>{
+      toast.error(`${err.message}`)
+    })
   };
   const googleLogIn=()=>
   {
     googleSignIn()
-    .then(res=>
+    .then(()=>
     {
-      console.log(res)
-      alert("Sign In With Google Successfull")
+     
+      toast.success("Sign In With Google Successfully")
+   
     }
     )
-    .catch(err=>console.log(err))
+    .catch(err=>toast.error(`${err.message}`))
   }
 
   

@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 
 const AddCarForm = () => {
   const {user}=useContext(AuthContext);
-  console.log(user);
+
 
     const handleAddCar = (e) => {
   e.preventDefault();

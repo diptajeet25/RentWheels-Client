@@ -15,7 +15,7 @@ const CarDetails = () => {
 
     const handleBooking=(car)=>
     {
-      console.log("after booking",car);
+    
       const bookingCar={
         carId:car._id,
         carName:car.carName,
@@ -24,7 +24,7 @@ const CarDetails = () => {
         category:car.category,
         bookedby:user.email
       }
-      console.log(bookingCar)
+    
       fetch("http://localhost:3000/bookingcars",
         {
           method:"POST",

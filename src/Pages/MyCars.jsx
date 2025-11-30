@@ -17,7 +17,7 @@ const MyCars = () => {
     {
       setUpdatecar(car)
       carRef.current.showModal();
-      console.log(car);
+ 
 
 
     }
@@ -34,7 +34,7 @@ const MyCars = () => {
 
         const handleDeleteCar=(id)=>
         {
-            console.log(id);
+           
             Swal.fire({
   title: "Are you sure?",
   text: "This car will be permanently removed from your list.",
@@ -94,7 +94,7 @@ const handleCarUpdate=(e)=>
     createdAt: form.date.value,
     status: form.status.value
   };
-  console.log(updatedCar)
+
 
 
   fetch("http://localhost:3000/updatecars",{

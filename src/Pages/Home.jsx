@@ -3,6 +3,8 @@ import Carousel from '../Components/Carousel';
 import WhyRentUs from '../Components/WhyRentUs';
 import ClientReview from '../Components/ClientReview';
 import RecentCars from '../Components/RecentCars';
+import Newsletter from '../Components/Newsletter';
+import FAQ from '../Components/FAQ'
 
 const Home = () => {
    const [latestCars, setLatestCars] = useState([]);
@@ -30,6 +32,9 @@ const Home = () => {
       )}
         <WhyRentUs></WhyRentUs>
         <ClientReview></ClientReview>
+        <Newsletter></Newsletter>
+        <FAQ></FAQ>
+        
     </div>
   );
 };

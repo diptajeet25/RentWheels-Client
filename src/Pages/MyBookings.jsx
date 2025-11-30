@@ -16,7 +16,7 @@ const MyBookings = () => {
     .then(res => res.json())
     .then(data =>
       { 
-        console.log(data)
+       
         setMybooking(data)
         setLoading(false)
       
@@ -86,7 +86,7 @@ const handleUnbook=(car)=>
 
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen ">
       <Navbar />
 
       <main className="flex-1">
@@ -106,14 +106,14 @@ const handleUnbook=(car)=>
       ) : 
 
 
-        <table className="table w-[90%] mx-auto">
+        <table className="table w-[90%] lg:w-[80%] mx-auto  ">
 
     <thead>
       <tr className='text-black'>
         <th></th>
         <th>Name</th>
         <th>Rent(per hour)</th>
-        <th>Status</th>
+        <th className='hidden md:block'>Location</th>
         <th>Action</th>
       </tr>
     </thead>
@@ -123,7 +123,7 @@ const handleUnbook=(car)=>
         <td className=" px-4 py-2">{i + 1}</td>
         <td className=" px-4 py-2">{car.carName}</td>
         <td className=" px-4 py-2">{car.rent}</td>
-        <td className=" px-4 py-2">{car.location}</td>
+        <td className=" px-4 py-2 hidden md:block">{car.location}</td>
         <td className='px-4 py-2'>
             
 <button onClick={()=>handleUnbook(car)} className="btn btn-error btn-sm text-black rounded-md">

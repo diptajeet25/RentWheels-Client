@@ -5,7 +5,7 @@ const Card = ({car}) => {
   
   return (
     <div>
-        <div className="card bg-base-100 w-100 shadow-sm">
+        <div className="card bg-base-100 h-full shadow-sm">
   <figure>
     <img
       src={car.image}

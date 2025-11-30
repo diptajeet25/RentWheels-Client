@@ -6,7 +6,7 @@ import Card from '../Components/Card';
 
 const AllCars = () => {
     const cars=useLoaderData();
-    console.log(cars);
+   
   return (
     <div>
         <Navbar></Navbar>
