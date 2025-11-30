@@ -53,7 +53,7 @@ const MyCars = () => {
                 {
                         Swal.fire({
       title: "Deleted!",
-      text: "Your file has been deleted.",
+      text: "Your Car has been deleted.",
       icon: "success"
     });
 
@@ -121,8 +121,9 @@ const handleCarUpdate=(e)=>
 })
 }
   return (
-    <div>
+    <div className='flex flex-col min-h-screen'>
         <Navbar></Navbar>
+        <main className="flex-1">
         <h2 className='text-2xl lg:text-3xl font-bold text-center my-8 mb-8 text-gray-800'>My <span className='text-primary'>Cars</span></h2>
         
         <div className="overflow-x-auto w-[98%] lg:w-[70%] font-semibold text-lg  flex justify-center mx-auto">
@@ -293,6 +294,7 @@ const handleCarUpdate=(e)=>
     </div>
   </div>
 </dialog>
+</main>
 
         <Footer></Footer>
 

@@ -1,10 +1,9 @@
-import React, { use } from 'react';
+import React, { useState } from 'react';
 import Card from './Card';
 
 const RecentCars = ({latestCars}) => {
    
-    const cars=use(latestCars)
-    console.log(cars)
+const [cars,setCars]=useState(latestCars)
   
   return (
     <div>

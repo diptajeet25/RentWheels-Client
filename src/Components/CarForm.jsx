@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
+import Swal from "sweetalert2";
 
 const AddCarForm = () => {
   const {user}=useContext(AuthContext);
@@ -36,8 +37,13 @@ const AddCarForm = () => {
     {
       if(data.insertedId)
       {
-        console.log(data)
-        alert("Car Added SuccessFully");
+       Swal.fire({
+  position: "center",
+  icon: "success",
+  title: "Car added successfully!",
+  showConfirmButton: false,
+  timer: 1500
+});
         form.reset();
       }
     }

@@ -1,12 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useLoaderData } from 'react-router';
 import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 import { MapPin, Calendar, User, Mail, Car, Tag } from "lucide-react";
 import { AuthContext } from '../Context/AuthContext';
+import Swal from 'sweetalert2';
 
 const CarDetails = () => {
-    const car=useLoaderData();
+    const carInfo=useLoaderData();
+    const [car,setCar]=useState(carInfo);
+
     const {user}=useContext(AuthContext);
   
 
@@ -32,7 +35,39 @@ const CarDetails = () => {
         }
       )
       .then(res=>res.json())
-      .then(data=>console.log(data))
+      .then(data=>
+        {
+          console.log(data)
+
+          const statusCar=
+          {
+            _id:car._id,
+            status:"Booked"
+          }
+
+          fetch("http://localhost:3000/bookcar",{
+            method:"PATCH",
+          headers:{
+            "content-type":"application/json"
+          },
+          body:JSON.stringify(statusCar)
+
+          })
+          .then(res=>res.json())
+          .then(data=>
+            {
+              console.log(data)
+              setCar(prev => ({ ...prev, status: "Booked" }));
+              Swal.fire({
+  position: "center",
+  icon: "success",
+  title: "Car Reserved SuccessFully",
+  showConfirmButton: false,
+  timer: 1500
+});
+        })
+    }
+  )
 
     }
   return (
@@ -93,9 +128,14 @@ const CarDetails = () => {
           <Tag className="w-7 h-7 text-blue-500" />
           <div>
             <h2 className="text-lg font-semibold text-gray-800">Status</h2>
+           {
+            car.status==="Available" ?
             <span className="px-3 py-1 text-sm font-medium rounded-full badge badge-secondary ">
-              {car.status}
-            </span>
+              {car.status}  </span> :  <span className="px-3 py-1 text-sm font-medium rounded-full badge badge-warning ">
+              {car.status}  </span>
+
+           } 
+          
           </div>
         </div>
 
@@ -123,9 +163,11 @@ const CarDetails = () => {
       </div>
 
       <div className="mt-10">
-        <button onClick={()=>handleBooking(car)} className="btn w-full py-4 rounded-xl text-lg font-semibold bg-blue-600 text-white hover:bg-blue-700 transition">
+       { car.status==="Available" ?  <button onClick={()=>handleBooking(car)} className="btn w-full py-4 rounded-xl text-lg font-semibold bg-blue-600 text-white hover:bg-blue-700 transition">
           Book This Car
-        </button>
+        </button>:  <button className="btn w-full py-4 rounded-xl text-lg font-semibold  bg-gray-400 text-white hover:bg-blue-700 transition" disabled>
+          Reserved
+        </button> }
       </div>
 
     </div>

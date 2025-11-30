@@ -15,7 +15,13 @@ const Card = ({car}) => {
   <div className="card-body">
     <h2 className="card-title">
      {car.carName}
-      <div className="badge badge-secondary">{car.status}</div>
+       {
+            car.status==="Available" ?
+            <span className="px-3 py-1 text-sm font-medium rounded-full badge badge-secondary ">
+              {car.status}  </span> :  <span className="px-3 py-1 text-sm font-medium rounded-full badge badge-warning ">
+              {car.status}  </span>
+
+           } 
     </h2>
     {car.description.split(" ").slice(0, 20).join(" ")}...
 <div className="card-actions justify-between items-center mt-3 flex-wrap gap-2">
