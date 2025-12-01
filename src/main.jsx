@@ -15,6 +15,7 @@ import AllCars from './Pages/AllCars.jsx';
 import CarDetails from './Pages/CarDetails.jsx';
 import MyCars from './Pages/MyCars.jsx';
 import MyBookings from './Pages/MyBookings.jsx';
+import ErrorPage from './Pages/ErrorPage.jsx';
 
 
 const router = createBrowserRouter([
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
   {
     path:"/mybookings",
     element:<PrivateRoute><MyBookings></MyBookings></PrivateRoute>
+  },
+  {
+    path:"*",
+    element:<ErrorPage></ErrorPage>
   }
   
 ]);

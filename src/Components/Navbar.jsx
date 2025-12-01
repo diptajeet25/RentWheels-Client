@@ -51,7 +51,7 @@ const Navbar = () => {
         {link}
       </ul>
     </div>
-    <a className="btn btn-ghost text-xl hover:bg-gray-100"><img src={logo} className='w-36' alt="RentWheels Logo" /></a>
+    <Link to="/" className="btn btn-ghost text-xl hover:bg-gray-100"><img src={logo} className='w-36' alt="RentWheels Logo" /></Link>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1 flex gap-4">

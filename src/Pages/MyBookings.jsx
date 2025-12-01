@@ -69,8 +69,8 @@ const handleUnbook=(car)=>
             console.log(data);
             setMybooking(prev => prev.filter(c => c._id !== car._id));
               Swal.fire({
-                title: "Deleted!",
-                text: "Your Booking has been deleted.",
+                title: "Cancled!",
+                text: "Your Booking has been Cancled.",
                 icon: "success"
               });
           })
