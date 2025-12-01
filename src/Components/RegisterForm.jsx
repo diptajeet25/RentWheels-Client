@@ -4,10 +4,13 @@ import { updateProfile } from "firebase/auth";
 import { auth } from "../Firebase/Firebase.init";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import {  useNavigate } from "react-router";
 
 const RegisterForm = () => {
   const {createUser,googleSignIn}=useContext(AuthContext);
   const [error,setError]=useState("")
+ 
+  const navigate=useNavigate();
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -42,6 +45,7 @@ else
         .catch(error=>console.log(error))
 
         toast.success("Sign Up Successfully")
+         navigate( "/")
 
 
   })
@@ -60,6 +64,7 @@ else
     {
       
       toast.success("Sign In With Google Successfully")
+       navigate("/")
     }
     )
     .catch(err=>toast.error(`${err.message}`))

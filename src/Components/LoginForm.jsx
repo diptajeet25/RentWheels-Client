@@ -1,10 +1,13 @@
 import React, {  useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { toast } from "react-toastify";
+import { useLocation, useNavigate } from "react-router";
 
 const LoginForm = () => {
 
     const { loginUser,googleSignIn}=useContext(AuthContext)
+    const location=useLocation();
+    const navigate=useNavigate();
 
 
   const handleLogin = (e) => {
@@ -19,6 +22,8 @@ const LoginForm = () => {
     loginUser(email,password)
     .then(()=>{
       toast.success("Sign In Successfully")
+      navigate(location.state ? location.state : "/")
+
     })
     .catch(err=>{
       toast.error(`${err.message}`)
@@ -31,6 +36,7 @@ const LoginForm = () => {
     {
      
       toast.success("Sign In With Google Successfully")
+       navigate(location.state ? location.state : "/")
    
     }
     )
