@@ -43,7 +43,7 @@ setCars(desiredCars);
     <div>
         <Navbar></Navbar>
           <h2 className='text-3xl lg:text-4xl font-bold text-center my-10 mb-8 text-gray-800'>Available <span className='text-primary'>Cars</span></h2>
-<form  className='h-full flex gap-0 items-center justify-end mx-4 my-4'>
+<form  className='h-full flex gap-0 items-center justify-end mx-18 my-6'>
   <input onChange={handleSearch}  type='text' name='search' className='input input-bordered rounded-r-none ' placeholder='Search Car By Name'></input>
   
 </form>
