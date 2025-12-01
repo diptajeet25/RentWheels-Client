@@ -22,6 +22,7 @@ const LoginForm = () => {
     loginUser(email,password)
     .then(()=>{
       toast.success("Sign In Successfully")
+      
       navigate(location.state ? location.state : "/")
 
     })

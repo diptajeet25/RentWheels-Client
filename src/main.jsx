@@ -16,6 +16,9 @@ import CarDetails from './Pages/CarDetails.jsx';
 import MyCars from './Pages/MyCars.jsx';
 import MyBookings from './Pages/MyBookings.jsx';
 import ErrorPage from './Pages/ErrorPage.jsx';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const router = createBrowserRouter([
@@ -71,7 +74,12 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
+       <ToastContainer
+       autoClose={2000}
+       ></ToastContainer>
+      
        <RouterProvider router={router}   />
+      
     </AuthProvider>
  
   </StrictMode>

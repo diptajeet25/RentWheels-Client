@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
-import { Link, NavLink } from 'react-router';
+import { Link, NavLink, useNavigate } from 'react-router';
 import logo from "../assets/logo.png"
 import { AuthContext } from '../Context/AuthContext';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 
 
 const Navbar = () => {
   const {user,logoutUser}=useContext(AuthContext);
+  const navigate=useNavigate();
 
   const handleLogOut=()=>
   {
@@ -17,6 +17,7 @@ const Navbar = () => {
       {
        
         toast.success("Logged Out Successfully")
+     navigate("/auth")
        
   })
     .catch((err)=>toast.error(`${err.message}`))
@@ -77,24 +78,12 @@ const Navbar = () => {
     <li onClick={handleLogOut} className='mb-2 text-md hover:bg-gray-300 p-2 rounded-2xl cursor-pointer' >Sign Out</li>
   </ul>
 </div>
- : <Link  to="/auth/reg" className="btn btn-primary">Register</Link>
+ : <Link  to="/auth" className="btn btn-primary">Login</Link>
     }
    
   </div>
 </div>
-<ToastContainer
-  position="top-right"
-  autoClose={2000}
-  hideProgressBar={false}
-  newestOnTop={false}
- 
-  rtl={false}
-  pauseOnFocusLoss
-  draggable
-  pauseOnHover
-  theme="colored"
-  style={{ zIndex: 9999 }}
-/>
+
 
     </div>
   );
