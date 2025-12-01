@@ -3,7 +3,6 @@ import { useLoaderData } from 'react-router';
 import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 import Card from '../Components/Card';
-import { motion } from "framer-motion";
 
 import noCar from '../assets/NoCar.png'
 
@@ -27,21 +26,17 @@ setCars(desiredCars);
 
 
     }
-    const containerVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    transition: {
-      staggerChildren: 0.2
+    if(!carsData)
+    {
+      return <div className="flex items-center justify-center">
+      <div className="flex flex-col items-center gap-4">
+        <span className="loading loading-ring loading-lg text-blue-600"></span>
+        <p className="text-lg font-semibold text-gray-600 animate-pulse">
+          Please wait...
+        </p>
+      </div>
+    </div>
     }
-  }
-};
-const cardVariants = {
-      hidden: { opacity: 0, y: 20 },
-      visible: { opacity: 1, y: 0 }
-    };
-
   
    
   return (
@@ -53,23 +48,12 @@ const cardVariants = {
   
 </form>
           {
-            cars.length > 0  ?  
-              <motion.div
-        className='grid grid-col-1 md:grid-cols-2  lg:grid-cols-3 gap-6 gap-x-6 w-[90%] md:w-[98%] lg:w-[90%] mx-auto' 
-     variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-       
-  whileInView="visible"
-  viewport={{ once: true, amount: 0.2 }}
-      >
+            cars.length > 0  ? <div className='grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-6 gap-x-6 w-[90%] md:w-[98%] lg:w-[90%] mx-auto'>
+  
         {
-            cars.map((car,i)=> <motion.div key={car._id} variants={cardVariants}>
-<Card className="h-full" key={i} car={car} ></Card>  </motion.div>)
-            
+            cars.map((car,i)=> <Card key={i} car={car} ></Card>)
         }
-        </motion.div>
-         : <div className="flex flex-col items-center justify-center h-[60vh] text-center bg-gray-50 rounded-xl shadow-lg mx-4 md:mx-20 p-10 mt-10">
+        </div> : <div className="flex flex-col items-center justify-center h-[60vh] text-center bg-gray-50 rounded-xl shadow-lg mx-4 md:mx-20 p-10 mt-10">
       <img
         src={noCar}
         alt="No cars found"

@@ -78,7 +78,10 @@ createRoot(document.getElementById('root')).render(
        autoClose={2000}
        ></ToastContainer>
       
-       <RouterProvider router={router}   />
+       <RouterProvider router={router}  hydrateFallback={<div className="flex justify-center items-center h-screen">
+      <span className="loading loading-spinner loading-lg"></span>
+    </div>}  />
+       
       
     </AuthProvider>
  
