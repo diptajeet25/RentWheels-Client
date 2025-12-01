@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 const Card = ({car}) => {
   
   return (
-    <div>
+    <div className='h-full'>
         <div className="card bg-base-100 h-full shadow-sm">
   <figure>
     <img

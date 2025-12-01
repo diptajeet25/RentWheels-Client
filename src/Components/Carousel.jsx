@@ -14,10 +14,7 @@ const Carousel = () => {
           <a href="#slide2" className="btn btn-circle">❯</a>
         </div>
         <div className="absolute bottom-8 left-8 text-white">
-          <h2 className="text-3xl md:text-5xl font-bold drop-shadow">Rent Your Dream Car</h2>
-          <p className="text-lg md:text-xl drop-shadow mt-2">
-            Explore thousands of cars at affordable prices
-          </p>
+          
         </div>
       </div>
 
@@ -31,10 +28,7 @@ const Carousel = () => {
           <a href="#slide3" className="btn btn-circle">❯</a>
         </div>
         <div className="absolute bottom-8 left-8 text-white">
-          <h2 className="text-3xl md:text-5xl font-bold drop-shadow">Luxury & Comfort</h2>
-          <p className="text-lg md:text-xl drop-shadow mt-2">
-            Premium cars for your special moments
-          </p>
+          
         </div>
       </div>
 
@@ -48,10 +42,7 @@ const Carousel = () => {
           <a href="#slide4" className="btn btn-circle">❯</a>
         </div>
         <div className="absolute bottom-8 left-8 text-white">
-          <h2 className="text-3xl md:text-5xl font-bold drop-shadow">Find Cars Near You</h2>
-          <p className="text-lg md:text-xl drop-shadow mt-2">
-            Quick booking and fast service everywhere
-          </p>
+         
         </div>
       </div>
 
@@ -65,10 +56,7 @@ const Carousel = () => {
           <a href="#slide5" className="btn btn-circle">❯</a>
         </div>
         <div className="absolute bottom-8 left-8 text-white">
-          <h2 className="text-3xl md:text-5xl font-bold drop-shadow">Adventure Awaits</h2>
-          <p className="text-lg md:text-xl drop-shadow mt-2">
-            Rent SUVs for off-road adventures
-          </p>
+          
         </div>
       </div>
 
@@ -82,10 +70,7 @@ const Carousel = () => {
           <a href="#slide1" className="btn btn-circle">❯</a>
         </div>
         <div className="absolute bottom-8 left-8 text-white">
-          <h2 className="text-3xl md:text-5xl font-bold drop-shadow">Electric & Eco-Friendly</h2>
-          <p className="text-lg md:text-xl drop-shadow mt-2">
-            Sustainable cars for a better tomorrow
-          </p>
+          
         </div>
       </div>
 

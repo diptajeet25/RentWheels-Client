@@ -24,7 +24,7 @@ const AddCarForm = () => {
     status: form.status.value
   };
 
-  fetch('http://localhost:3000/cars',{
+  fetch('https://car-rental-server-six-gold.vercel.app/cars',{
    method: "POST",
   headers: {
     "Content-Type": "application/json"

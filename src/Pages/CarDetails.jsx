@@ -25,7 +25,7 @@ const CarDetails = () => {
         bookedby:user.email
       }
     
-      fetch("http://localhost:3000/bookingcars",
+      fetch("https://car-rental-server-six-gold.vercel.app/bookingcars",
         {
           method:"POST",
           headers:{
@@ -45,7 +45,7 @@ const CarDetails = () => {
             status:"Booked"
           }
 
-          fetch("http://localhost:3000/bookcar",{
+          fetch("https://car-rental-server-six-gold.vercel.app/bookcar",{
             method:"PATCH",
           headers:{
             "content-type":"application/json"

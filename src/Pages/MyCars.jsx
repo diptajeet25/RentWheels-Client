@@ -23,7 +23,7 @@ const MyCars = () => {
     }
     useEffect(()=>
         {
-            fetch(`http://localhost:3000/mycars?email=${user.email}`)
+            fetch(`https://car-rental-server-six-gold.vercel.app/mycars?email=${user.email}`)
             .then(res=>res.json())
             .then(data=>{
         
@@ -46,7 +46,7 @@ const MyCars = () => {
 })
 .then((result) => {
   if (result.isConfirmed) {
-      fetch(`http://localhost:3000/cars/${id}`,{
+      fetch(`https://car-rental-server-six-gold.vercel.app/cars/${id}`,{
         method:'DELETE'
       })
             .then(res=>res.json())
@@ -97,7 +97,7 @@ const handleCarUpdate=(e)=>
 
 
 
-  fetch("http://localhost:3000/updatecars",{
+  fetch("https://car-rental-server-six-gold.vercel.app/updatecars",{
 
     method:"PATCH",
     headers:{
