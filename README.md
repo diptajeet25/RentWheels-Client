@@ -21,3 +21,17 @@ RentWheels is a modern car rental web application that allows users to browse, b
 - Node.js & Express (Backend)
 - MongoDB (Database)
 
+  
+
+## 🚀 Run the Project Locally
+
+Follow the steps below to run the project on your local machine.
+
+1. Clone the repository  
+2. Navigate to the project directory  
+3. Install dependencies  
+4. Setup environment variables  
+5. Start the development server  
+
+The application will be available at:  
+http://localhost:5173
