@@ -24,13 +24,15 @@ const Navbar = () => {
   }
   const link=<div className='text-semibold flex flex-col lg:flex-row gap-2 font-semibold  lg:gap-4'>
   <NavLink to="/" className={({ isActive }) =>isActive ? "text-purple-600" : ""}>Home</NavLink>
+  <NavLink to="/about" className={({ isActive }) =>isActive ? "text-purple-600" : "" }>About Us</NavLink>
+  <NavLink to="/blogs" className={({ isActive }) =>isActive ? "text-purple-600" : "" }>Blog</NavLink>
   <NavLink to="/cars" className={({ isActive }) =>isActive ? "text-purple-600" : "" }>Browse Cars</NavLink>
   {
     user ? <>
-    <NavLink to="/mycars" className={({ isActive }) =>isActive ? "text-purple-600" : "" }>My Listings</NavLink>
-    <NavLink to="/mybookings"  className={({ isActive }) =>isActive ? "text-purple-600" : ""}>My Bookings</NavLink>
+    {/* <NavLink to="/mycars" className={({ isActive }) =>isActive ? "text-purple-600" : "" }>My Listings</NavLink>
+    <NavLink to="/mybookings"  className={({ isActive }) =>isActive ? "text-purple-600" : ""}>My Bookings</NavLink> */}
 
-      <NavLink to="/addcar" className={({ isActive }) =>isActive ? "text-purple-600" : "" }>Add Car</NavLink>
+      <NavLink to="/Dashboard" className={({ isActive }) =>isActive ? "text-purple-600" : "" }>DashBoard</NavLink>
     </> :""
   }
 
@@ -73,8 +75,8 @@ const Navbar = () => {
     tabIndex="-1"
     className="menu menu-sm dropdown-content bg-white rounded-box z-50 mt-3 w-52 p-2 shadow-lg"
   >
-    <li className='mb-2 text-md hover:bg-gray-300 p-2 rounded-2xl cursor-pointer'>{user.displayName}</li>
-    <li className='mb-2 text-md hover:bg-gray-300 p-2 rounded-2xl cursor-pointer'>{user.email}</li>
+    <Link to="/myprofile" className='mb-2 text-md hover:bg-gray-300 p-2 rounded-2xl cursor-pointer'>My Profile</Link>
+    
     <li onClick={handleLogOut} className='mb-2 text-md hover:bg-gray-300 p-2 rounded-2xl cursor-pointer' >Sign Out</li>
   </ul>
 </div>

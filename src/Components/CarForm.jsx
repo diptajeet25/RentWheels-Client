@@ -18,6 +18,7 @@ const AddCarForm = () => {
     rent: form.rent.value,
     location: form.location.value,
     image: form.image.value,
+    video: form.video.value,
     providerName: form.username.value,
     providerEmail: form.useremail.value,
     createdAt: form.date.value,
@@ -120,6 +121,17 @@ const AddCarForm = () => {
             required
           />
         </div>
+
+                <div>
+          <label className="font-semibold text-black">Car Video URL</label>
+          <input
+            type="url" name="video"
+            placeholder="Paste video URL"
+            className="input input-bordered w-full"
+            required
+          />
+        </div>
+        
 
         <div>
           <label className="font-semibold text-black">Provider Name</label>

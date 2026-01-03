@@ -2,7 +2,7 @@ import React from "react";
 
 const Newsletter = () => {
   return (
-    <div className="w-[95%] lg:w-[80%] mx-auto my-16 p-10 bg-primary/10 rounded-2xl text-center">
+    <div className="w-[90%] lg:w-[80%] mx-auto mt-24 p-10 card-light rounded-2xl text-center">
       <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-gray-800">
         Subscribe to Our <span className="text-primary">Newsletter</span>
       </h2>
@@ -15,7 +15,7 @@ const Newsletter = () => {
         <input
           type="email"
           placeholder="Enter your email"
-          className="input input-bordered w-full sm:w-2/3 lg:w-1/2"
+          className="input text-white input-bordered w-full sm:w-2/3 lg:w-1/2"
           required
         />
         <button

@@ -1,4 +1,4 @@
-import { FaFacebook, FaInstagram, FaYoutube, FaTwitter } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaYoutube, FaTwitter, FaLinkedin, FaGithub } from "react-icons/fa";
 import logo from "../assets/logo.png"
 
 const Footer = () => {
@@ -23,20 +23,19 @@ const Footer = () => {
 
    
           <div className="flex gap-4 mt-5 text-xl">
-            <a href="#"><FaFacebook /></a>
-            <a href="#"><FaInstagram /></a>
-            <a href="#"><FaYoutube /></a>
-            <a href="#"><FaTwitter /></a>
+            <a href="https://www.facebook.com/share/1AbNnHWJ2c"><FaFacebook /></a>
+            <a href="https://www.linkedin.com/in/diptajeet-roy"><FaLinkedin /></a>
+            <a href="https://github.com/diptajeet25"><FaGithub /></a>
+            
           </div>
         </div>
 
         <div>
           <h3 className="text-lg font-semibold text-white">Quick Links</h3>
           <ul className="mt-4 space-y-2 text-sm">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Cars</a></li>
-            <li><a href="#">Rent Process</a></li>
-            <li><a href="#">FAQ</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/cars">Cars</a></li>
+            
           </ul>
         </div>
 
@@ -44,10 +43,10 @@ const Footer = () => {
         <div>
           <h3 className="text-lg font-semibold text-white">Company</h3>
           <ul className="mt-4 space-y-2 text-sm">
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Our Team</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Careers</a></li>
+            <li><a href="/about">About Us</a></li>
+           
+            <li><a href="/blogs">Blog</a></li>
+            
           </ul>
         </div>
 
@@ -55,10 +54,10 @@ const Footer = () => {
         <div>
           <h3 className="text-lg font-semibold text-white">Support</h3>
           <ul className="mt-4 space-y-2 text-sm">
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Help Center</a></li>
-            <li><a href="#">Terms & Conditions</a></li>
-            <li><a href="#">Privacy Policy</a></li>
+            
+            <li><a href="/help">Help Center</a></li>
+            <li><a href="/terms">Terms & Conditions</a></li>
+           
           </ul>
         </div>
       </div>

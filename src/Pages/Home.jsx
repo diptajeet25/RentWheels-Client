@@ -6,6 +6,9 @@ import RecentCars from '../Components/RecentCars';
 import Newsletter from '../Components/Newsletter';
 import FAQ from '../Components/FAQ'
 import { Typewriter } from 'react-simple-typewriter';
+import Services from '../Components/Services';
+import Categories from '../Components/Catergories';
+import HowItWorks from '../Components/HowItWorks';
 
 const Home = () => {
    const [latestCars, setLatestCars] = useState([]);
@@ -18,6 +21,7 @@ const Home = () => {
       .then(res => res.json())
       .then(data => {
         setLatestCars(data);
+        console.log(data);
          setLoading(false);
        
       })
@@ -43,11 +47,14 @@ const Home = () => {
         </div>
       </div>
        {loading ? (
-        <p className="text-center mt-10">Loading latest cars...</p>
+        <p className="text-center mt-10 text-black">Loading latest cars...</p>
       ) : (
         <RecentCars latestCars={latestCars} />
       )}
+      <Categories></Categories>
         <WhyRentUs></WhyRentUs>
+        <Services></Services>
+        <HowItWorks></HowItWorks>
         <ClientReview></ClientReview>
         <Newsletter></Newsletter>
         <FAQ></FAQ>

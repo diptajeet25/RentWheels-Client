@@ -6,11 +6,11 @@ import CarForm from '../Components/CarForm';
 const AddCar = () => {
   return (
     <div>
-        <Navbar></Navbar>
+       
         <h2>Add Car</h2>
         <CarForm></CarForm>
 
-        <Footer></Footer>
+       
     </div>
   );
 };

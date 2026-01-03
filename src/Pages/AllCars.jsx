@@ -1,76 +1,128 @@
-import React, { useState } from 'react';
-import { useLoaderData } from 'react-router';
-import Navbar from '../Components/Navbar';
-import Footer from '../Components/Footer';
-import Card from '../Components/Card';
-
+import React, { useState } from 'react'
+import Navbar from '../Components/Navbar'
+import Footer from '../Components/Footer'
+import Card from '../Components/Card'
 import noCar from '../assets/NoCar.png'
+import { useQuery } from '@tanstack/react-query'
 
 const AllCars = () => {
-    const carsData=useLoaderData();
-    const [cars,setCars]=useState(carsData);
-    const handleSearch=(e)=>
-    {
-      e.preventDefault();
-      const name=e.target.value.trim();
-      console.log(name);
-      if(!name )
-      {
-        
-        setCars(carsData)
+  const [search, setSearch] = useState('')
+  const [category, setCategory] = useState('')
+  const [status, setStatus] = useState('')
+  const [sort, setSort] = useState('')
+  const [page, setPage] = useState(1)
+  const limit = 8
 
-        return
-      }
-const desiredCars=carsData.filter(car=>car.carName.toLowerCase().startsWith(name.toLowerCase()))
-setCars(desiredCars);
-
-
+  const { data = {}, isLoading } = useQuery({
+    queryKey: ['allcars', search, category, status, sort, page],
+    queryFn: async () => {
+      const res = await fetch(
+        `https://car-rental-server-six-gold.vercel.app/allcars?search=${search}&category=${category}&status=${status}&sort=${sort}&page=${page}&limit=${limit}`
+      )
+      return res.json()
     }
-    if(!carsData)
-    {
-      return <div className="flex items-center justify-center">
-      <div className="flex flex-col items-center gap-4">
+  })
+
+  const cars = data.cars || []
+  const totalPages = data.totalPages || 1
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center min-h-screen justify-center">
         <span className="loading loading-ring loading-lg text-blue-600"></span>
-        <p className="text-lg font-semibold text-gray-600 animate-pulse">
-          Please wait...
-        </p>
       </div>
-    </div>
-    }
-  
-   
+    )
+  }
+
   return (
     <div>
-        <Navbar></Navbar>
-          <h2 className='text-3xl lg:text-4xl font-bold text-center my-10 mb-8 text-gray-800'>Available <span className='text-primary'>Cars</span></h2>
-<form  className='h-full flex gap-0 items-center justify-end mx-18 my-6'>
-  <input onChange={handleSearch}  type='text' name='search' className='input input-bordered rounded-r-none ' placeholder='Search Car By Name'></input>
-  
-</form>
-          {
-            cars.length > 0  ? <div className='grid grid-col-1 md:grid-cols-2 lg:grid-cols-3 gap-6 gap-x-6 w-[90%] md:w-[98%] lg:w-[90%] mx-auto'>
-  
-        {
-            cars.map((car,i)=> <Card key={i} car={car} ></Card>)
-        }
-        </div> : <div className="flex flex-col items-center justify-center h-[60vh] text-center bg-gray-50 rounded-xl shadow-lg mx-4 md:mx-20 p-10 mt-10">
-      <img
-        src={noCar}
-        alt="No cars found"
-        className="w-48 h-48 mb-6  opacity-80"
-      />
-      <h3 className="text-3xl font-bold text-gray-800 mb-2">Oops! No Cars Found</h3>
-      <p className="text-gray-500 mb-4">
-        We couldn't find any cars matching your search. Try a different name or check back later.
-      </p>
+      <Navbar />
 
+      <h2 className="text-3xl lg:text-4xl font-bold text-center my-10 text-gray-800">
+        Explore <span className="text-primary">Cars</span>
+      </h2>
+
+      <div className="w-[90%] mx-auto grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+        <input
+          type="text"
+          placeholder="Search by car name"
+          className="input input-bordered"
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value)
+            setPage(1)
+          }}
+        />
+
+        <select
+          className="select select-bordered"
+          value={category}
+          onChange={(e) => {
+            setCategory(e.target.value)
+            setPage(1)
+          }}
+        >
+          <option value="">All Categories</option>
+          <option value="SUV">SUV</option>
+          <option value="Sedan">Sedan</option>
+          <option value="Electric">Electric</option>
+          <option value="Luxury">Luxury</option>
+          <option value="Hatchback">Hatchback</option>
+        </select>
+
+        <select
+          className="select select-bordered"
+          value={status}
+          onChange={(e) => {
+            setStatus(e.target.value)
+            setPage(1)
+          }}
+        >
+          <option value="">All Status</option>
+          <option value="Available">Available</option>
+          <option value="Booked">Booked</option>
+        </select>
+
+        <select
+          className="select select-bordered"
+          value={sort}
+          onChange={(e) => setSort(e.target.value)}
+        >
+          <option value="">Default</option>
+          <option value="priceAsc">Price: Low to High</option>
+          <option value="priceDesc">Price: High to Low</option>
+          <option value="latest">Latest</option>
+        </select>
+      </div>
+
+      {cars.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-[90%] mx-auto">
+          {cars.map(car => (
+            <Card key={car._id} car={car} />
+          ))}
+        </div>
+      ) : (
+        <div className="flex flex-col items-center justify-center h-[60vh] text-center">
+          <img src={noCar} className="w-48 mb-4 opacity-80" />
+          <p className="text-gray-500">No cars found</p>
+        </div>
+      )}
+
+      <div className="flex justify-center gap-3 my-10">
+        {[...Array(totalPages).keys()].map(num => (
+          <button
+            key={num}
+            onClick={() => setPage(num + 1)}
+            className={`btn ${page === num + 1 ? 'btn-primary' : ''}`}
+          >
+            {num + 1}
+          </button>
+        ))}
+      </div>
+
+      <Footer />
     </div>
-          }
+  )
+}
 
-        <Footer></Footer>
-
-    </div>
-  );
-};
-
-export default AllCars;
+export default AllCars

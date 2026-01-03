@@ -3,8 +3,8 @@ import { Car, ShieldCheck, Clock, DollarSign } from "lucide-react";
 
 const WhyRentUs = () => {
   return (
-    <div className="w-[95%] lg:w-[80%] mx-auto my-16">
-      <h2 className="text-3xl lg:text-4xl font-bold text-center mb-10 text-gray-800">
+    <div className="w-[90%] lg:w-[80%] mx-auto mt-24">
+      <h2 className="text-3xl lg:text-4xl font-bold text-center mb-6 text-gray-800">
         Why Rent <span className="text-primary">Us?</span>
       </h2>
 

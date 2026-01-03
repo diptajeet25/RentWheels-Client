@@ -2,14 +2,14 @@ import React from "react";
 
 const ClientReview = () => {
   return (
-    <div className="w-[95%] lg:w-[80%] mx-auto my-16">
-      <h2 className="text-4xl font-bold text-center text-black mb-10">
-        What Our Customers Say
+    <div className="w-[90%] lg:w-[80%] mx-auto mt-24">
+      <h2 className="text-4xl font-bold text-center text-black mb-6">
+        What Our <span className="text-primary">Customers</span> Say
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-        <div className="card bg-base-100 shadow-xl p-6 border">
+        <div className="card card-light  p-6 rounded-2xl">
           <div className="flex items-center gap-4 mb-4">
             <img
               src="https://i.pravatar.cc/120?img=5"
@@ -18,15 +18,15 @@ const ClientReview = () => {
             />
             <div>
               <h3 className="font-bold text-lg">Rahim Ahmed</h3>
-              <p className="text-sm text-gray-500">Dhaka, Bangladesh</p>
+              <p className="text-sm ">Dhaka, Bangladesh</p>
             </div>
           </div>
-          <p className="text-white">
+          <p >
             “The car was in great condition and the booking process was very
             smooth. Highly recommended!”
           </p>
           <div className="rating mt-3">
-            <input type="radio" className="mask mask-star-2 bg-yellow-400" />
+            <input type="radio" className="mask mask-star-2 bg-yellow-00" />
             <input type="radio" className="mask mask-star-2 bg-yellow-400" />
             <input type="radio" className="mask mask-star-2 bg-yellow-400" />
             <input type="radio" className="mask mask-star-2 bg-yellow-400" />
@@ -34,7 +34,7 @@ const ClientReview = () => {
           </div>
         </div>
 
-        <div className="card bg-base-100 shadow-xl p-6 border">
+        <div className="card card-light  p-6 rounded-2xl">
           <div className="flex items-center gap-4 mb-4">
             <img
               src="https://i.pravatar.cc/120?img=12"
@@ -43,10 +43,10 @@ const ClientReview = () => {
             />
             <div>
               <h3 className="font-bold text-lg">Mariya Islam</h3>
-              <p className="text-sm text-gray-500">Chittagong, Bangladesh</p>
+              <p className="text-sm ">Chittagong, Bangladesh</p>
             </div>
           </div>
-          <p className="text-white">
+          <p >
             “Super fast service! I rented an SUV for a family trip, and it was
             absolutely perfect.”
           </p>
@@ -59,7 +59,7 @@ const ClientReview = () => {
           </div>
         </div>
 
-        <div className="card bg-base-100 shadow-xl p-6 border">
+        <div className="card card-light  p-6 rounded-2xl">
           <div className="flex items-center gap-4 mb-4">
             <img
               src="https://i.pravatar.cc/120?img=30"
@@ -68,10 +68,10 @@ const ClientReview = () => {
             />
             <div>
               <h3 className="font-bold text-lg">Sabbir Hossain</h3>
-              <p className="text-sm text-gray-500">Sylhet, Bangladesh</p>
+              <p className="text-sm ">Sylhet, Bangladesh</p>
             </div>
           </div>
-          <p className="text-white">
+          <p >
             “Best car rental platform! Affordable, clean cars and friendly
             support team.”
           </p>

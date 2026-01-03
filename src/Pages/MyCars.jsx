@@ -126,7 +126,7 @@ const handleCarUpdate=(e)=>
 }
   return (
     <div className='flex flex-col min-h-screen'>
-        <Navbar></Navbar>
+       
         <main className="flex-1">
         <h2 className='text-2xl lg:text-3xl font-bold text-center my-8 mb-8 text-gray-800'>My <span className='text-primary'>Cars</span></h2>
         
@@ -311,7 +311,6 @@ const handleCarUpdate=(e)=>
 </dialog>
 </main>
 
-        <Footer></Footer>
 
     </div>
   );

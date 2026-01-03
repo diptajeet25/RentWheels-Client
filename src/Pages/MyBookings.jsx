@@ -87,7 +87,7 @@ const handleUnbook=(car)=>
 
   return (
     <div className="flex flex-col min-h-screen ">
-      <Navbar />
+     
 
       <main className="flex-1">
         <h2 className='text-2xl lg:text-3xl font-bold text-center my-8 mb-8 text-gray-800'>
@@ -143,7 +143,7 @@ const handleUnbook=(car)=>
        
       </main>
 
-      <Footer />
+   
     </div>
   );
 };

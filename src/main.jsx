@@ -18,6 +18,14 @@ import MyBookings from './Pages/MyBookings.jsx';
 import ErrorPage from './Pages/ErrorPage.jsx';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import About from './Pages/About.jsx';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import HelpSupport from './Pages/HelpSupport.jsx';
+import TermsAndConditions from './Pages/TermsAndConditions.jsx';
+import Blogs from './Pages/Blogs.jsx';
+import DashBoard from './Layout/DashBoard.jsx';
+import DashboardWelcome from './Pages/DashBoardWelcome.jsx';
+import MyProfile from './Pages/MyProfile.jsx';
 
 
 
@@ -29,10 +37,6 @@ const router = createBrowserRouter([
       {index:true,element:<Home></Home>},
       
     ]
-  },
-  {
-    path:"/addcar",
-    element:<PrivateRoute><AddCar></AddCar></PrivateRoute>
   },
   {
     path:"/auth",
@@ -47,22 +51,52 @@ const router = createBrowserRouter([
   {
     path:"/cars",
     element:<AllCars></AllCars>,
-    loader: ()=> fetch("https://car-rental-server-six-gold.vercel.app/allcars")
   },
   {
     path:"/cardetails/:id",
-    element:<PrivateRoute><CarDetails></CarDetails></PrivateRoute>,
+    element:<CarDetails></CarDetails>,
     loader:({params})=>fetch(`https://car-rental-server-six-gold.vercel.app/cardetails/${params.id}`)
 
 
   },
+ 
   {
-    path:"/mycars",
-    element:<PrivateRoute><MyCars></MyCars></PrivateRoute>
+    path:"/about",
+    element:<About></About>
+
   },
   {
-    path:"/mybookings",
-    element:<PrivateRoute><MyBookings></MyBookings></PrivateRoute>
+    path:"/myprofile",
+    element:<PrivateRoute><MyProfile></MyProfile></PrivateRoute>
+
+  },
+  {
+    path:"/dashboard",
+    element:<PrivateRoute><DashBoard></DashBoard></PrivateRoute>,
+    children:[
+      {index:true,element:<DashboardWelcome></DashboardWelcome>},
+      {path:"addcar",element:<AddCar></AddCar>},
+      {path:"mycars",element:<MyCars></MyCars>},
+      {path:"mybookings",element:<MyBookings></MyBookings>}
+
+    ]
+
+  },
+
+  {
+    path:"/help",
+    element:<HelpSupport></HelpSupport>
+
+  },
+  {
+    path:"/terms",
+    element:<TermsAndConditions></TermsAndConditions>
+
+  },
+  {
+    path:"/blogs",
+    element:<Blogs></Blogs>
+
   },
   {
     path:"*",
@@ -70,6 +104,7 @@ const router = createBrowserRouter([
   }
   
 ]);
+const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -78,9 +113,9 @@ createRoot(document.getElementById('root')).render(
        autoClose={2000}
        ></ToastContainer>
       
-       <RouterProvider router={router}  hydrateFallback={<div className="flex justify-center items-center h-screen">
-      <span className="loading loading-spinner loading-lg"></span>
-    </div>}  />
+       <QueryClientProvider client={queryClient}>
+       <RouterProvider router={router} />
+       </QueryClientProvider>
        
       
     </AuthProvider>
