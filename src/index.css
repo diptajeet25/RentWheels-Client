@@ -2,19 +2,28 @@
 @plugin "daisyui";
 @plugin "daisyui/theme" {
   name: "light";
-  default: true;
 }
-
-
-
-body
-{
-background-color: rgb(240, 240, 240);
+@plugin "daisyui/theme" {
+  name: "dark";
 }
-.card-light
-{
-  background-color: white;
-  color: black;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  
+:root{
+--bg:240 240 240;
+--card:255 255 255;
+--text:0 0 0;
+--shadow:0 4px 6px rgba(0,0,0,0.1);
+}
+.dark{
+--bg:17 24 39;
+--card:31 41 55;
+--text:243 244 246;
+--shadow:0 4px 10px rgba(0,0,0,0.6);
+}
+body{
+background-color:rgb(var(--bg));
+color:rgb(var(--text));
+}
+.card-light{
+background-color:rgb(var(--card));
+color:rgb(var(--text));
+box-shadow:var(--shadow);
 }
