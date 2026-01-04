@@ -41,7 +41,7 @@ return(
 </div>
 <ul tabIndex="-1" className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">{link}</ul>
 </div>
-<Link to="/" className="btn btn-ghost text-xl"><img src={logo} className='w-36' alt="RentWheels Logo"/></Link>
+<Link to="/" className="btn btn-ghost text-xl"><img src={logo} className='w-36 bg-white p-2' alt="RentWheels Logo"/></Link>
 </div>
 <div className="navbar-center hidden lg:flex">
 <ul className="menu menu-horizontal px-1 flex gap-4">{link}</ul>
